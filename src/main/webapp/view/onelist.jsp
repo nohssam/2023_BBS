@@ -63,6 +63,26 @@
 		f.action = "/MyController?cmd=delete";
 		f.submit();
 	}
+	
+	function comment_go(f) {
+		 // 유효성 검사
+		if(f.writer.value.trim().length <=0){
+			alert("이름을 입력해 주세요");
+			f.writer.focus();
+			return;
+		}
+		if(f.content.value.trim().length <=0){
+			alert("내용을 입력해 주세요");
+			f.content.focus();
+			return;
+		}
+		f.action = "/MyController?cmd=c_write";
+		f.submit();
+	}
+	function comment_del(f) {
+		f.action = "/MyController?cmd=c_delete";
+		f.submit();
+	}
 </script>
 </head>
 <body>
@@ -106,7 +126,7 @@
 		</table>
 	</form>
 	</div>
-	<%-- 댓글 처리 --%>
+	<%-- 댓글 입력 --%>
 	<div style="padding:50px; width:580px; margin: auto; ">
 		<form method="post">
 			<fieldset>
@@ -120,6 +140,8 @@
 		</form>
 	</div>
 	<br><br><br>
+	
+	<%-- 댓글 출력 --%>
 	<div style="display: table;" >
 		<c:forEach var="k" items="${c_list}">
 		 <div style="border: 1px solid #cc00cc; width: 400px; margin: 20px; padding: 20px;">
@@ -129,6 +151,8 @@
 		 		<p>날짜 : ${k.write_date.substring(0,10)}</p>
 		 		<%-- 실제로는 로그인 성공해야 지만 삭제번트이 보여야 한다. --%>
 		 		<input type="button" value="댓글삭제" onclick="comment_del(this.form)">
+		 		<input type="hidden" value="${k.c_idx}" name="c_idx">
+		 		<input type="hidden" value="${k.b_idx}" name="b_idx">
 		 	</form>
 		 </div>
 		</c:forEach>

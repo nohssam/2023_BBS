@@ -1,9 +1,12 @@
 package com.ict.model;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ict.db.BVO;
+import com.ict.db.CVO;
 import com.ict.db.DAO;
 
 public class OneListCommand implements Command{
@@ -18,9 +21,10 @@ public class OneListCommand implements Command{
 		BVO bvo = DAO.getOneList(b_idx);
 		
 		// 나중에 해당 원글에 대한 댓글도 가져와야 된다.
-		
+		List<CVO> c_list = DAO.getClist(b_idx); 
 		
 		request.setAttribute("bvo", bvo);
+		request.setAttribute("c_list", c_list);
 		return "view/onelist.jsp";
 	}
 }
