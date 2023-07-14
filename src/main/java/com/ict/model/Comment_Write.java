@@ -12,6 +12,7 @@ public class Comment_Write implements Command{
 		String b_idx = request.getParameter("b_idx");
 		String writer = request.getParameter("writer");
 		String content = request.getParameter("content");
+		String cPage = request.getParameter("cPage");
 		
 		CVO cvo = new CVO();
 		cvo.setB_idx(b_idx);
@@ -19,7 +20,7 @@ public class Comment_Write implements Command{
 		cvo.setContent(content);
 		
 		int result = DAO.getC_Insert(cvo);
-		return "MyController?cmd=onelist&b_idx="+b_idx;
+		return "MyController?cmd=onelist&b_idx="+b_idx+"&cPage="+cPage;
 	}
 }
 

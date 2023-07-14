@@ -57,7 +57,7 @@
 		}
 	}
 	function list_go(f) {
-		f.action="/MyController?cmd=list";
+		f.action="/MyController?cmd=list&cPage=${cPage}";
 		f.submit();
 	}
 </script>
@@ -101,6 +101,7 @@
 				<tr>
 					<td colspan="2">
 						<input type="hidden" name="b_idx" value="${bvo.b_idx}">
+						<input type="hidden" name="cPage" value="${cPage}">
 						<input type="button" value="수정" onclick="update_ok(this.form)"/>
 						<input type="reset" value="다시"/>
 						<input type="button" value="목록" onclick="list_go(this.form)"/>

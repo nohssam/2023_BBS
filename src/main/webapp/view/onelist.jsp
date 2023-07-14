@@ -117,6 +117,7 @@
 				<tr>
 					<td colspan="2">
 						<input type="hidden" value="${bvo.b_idx}" name="b_idx">
+						<input type="hidden" value="${cPage}" name="cPage">
 						<input type="button" value="수정" onclick="update_go(this.form)">
 						<input type="button" value="삭제" onclick="delete_go(this.form)">
 						<input type="button" value="목록" onclick="list_go(this.form)">
@@ -136,6 +137,7 @@
 				 </p>
 				 <input type="button" value="댓글저장" onclick="comment_go(this.form)">
 				 <input type="hidden" name="b_idx" value="${bvo.b_idx}">
+				 <input type="hidden" name="cPage" value="${cPage}">
 			 </fieldset>
 		</form>
 	</div>
@@ -153,6 +155,7 @@
 		 		<input type="button" value="댓글삭제" onclick="comment_del(this.form)">
 		 		<input type="hidden" value="${k.c_idx}" name="c_idx">
 		 		<input type="hidden" value="${k.b_idx}" name="b_idx">
+		 		<input type="hidden" name="cPage" value="${cPage}">
 		 	</form>
 		 </div>
 		</c:forEach>

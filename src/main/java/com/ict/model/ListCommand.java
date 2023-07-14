@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.crypto.dsig.keyinfo.PGPData;
 
 import com.ict.db.BVO;
 import com.ict.db.DAO;
@@ -55,8 +56,17 @@ public class ListCommand implements Command{
 			request.setAttribute("list", list);
 			
 			// ** 5 현재 페이지의 시작 블록과 끝 블록 구하자 
-			paging.setBeginBlock((int)((paging.getNowPage()-1/paging.getPagePerBlock()))*paging.getPagePerBlock()+1);
-			paging.setEnd(paging.getBeginBlock()+paging.getPagePerBlock()-1);
+			paging.setBeginBlock((int)((paging.getNowPage()-1)/paging.getPagePerBlock())*paging.getPagePerBlock()+1);
+			paging.setEndBlock(paging.getBeginBlock()+paging.getPagePerBlock()-1);
+			
+			// 주위 사항 : endBlock이 totalPage보다 클수가 있다.
+			//           사용하는 않는 페이지번호가 나오므로 
+			//           endBlock이 totalPage보다 크면 
+			//           endBlock를 totalPage로 변경 시키자. 
+			if(paging.getEndBlock() >  paging.getTotalPage()) {
+				paging.setEndBlock(paging.getTotalPage());
+			}
+			request.setAttribute("paging", paging);
 			return "view/list.jsp";
 		}	
 }

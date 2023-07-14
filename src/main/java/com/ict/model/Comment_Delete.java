@@ -10,7 +10,9 @@ public class Comment_Delete implements Command{
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
 		String c_idx = request.getParameter("c_idx");
 		String b_idx = request.getParameter("b_idx");
+		String cPage = request.getParameter("cPage");
 		int result = DAO.getC_delete(c_idx);
-		return "MyController?cmd=onelist&b_idx="+b_idx;
+		return "MyController?cmd=onelist&b_idx="+b_idx+"&cPage="+cPage;
+		//return "MyController?cmd=onelist&b_idx="+b_idx;
 	}
 }

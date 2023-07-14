@@ -13,6 +13,7 @@ public class OneListCommand implements Command{
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
 		String b_idx = request.getParameter("b_idx");
+		String cPage = request.getParameter("cPage");
 		
 		// 조회수 업데이트 
 		int result = DAO.getHit(b_idx);
@@ -25,6 +26,7 @@ public class OneListCommand implements Command{
 		
 		request.setAttribute("bvo", bvo);
 		request.setAttribute("c_list", c_list);
+		request.setAttribute("cPage", cPage);
 		return "view/onelist.jsp";
 	}
 }

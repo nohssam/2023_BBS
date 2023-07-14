@@ -9,6 +9,7 @@ public class DeleteOKCommand implements Command{
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
 		String b_idx = request.getParameter("b_idx");
+		String cPage = request.getParameter("cPage");
 		
 		// 방법1. 원글에 속한 댓글 모두 삭제
 		int res = DAO.getCommentDeleteAll(b_idx);
@@ -20,6 +21,6 @@ public class DeleteOKCommand implements Command{
 		
 		// 원글 삭제 
 		int result = DAO.getDelete(b_idx);
-		return "MyController?cmd=list";
+		return "MyController?cmd=list&cPage="+cPage;
 	}
 }
